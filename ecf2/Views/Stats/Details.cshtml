@@ -1,0 +1,18 @@
+﻿@model ecf2.Models.EvenementStat
+
+@{
+    ViewData["Title"] = "Détails de la statistique";
+}
+
+<div class="container mt-4">
+    <h1 class="text-center">@ViewData["Title"]</h1>
+
+    <div class="mt-3">
+        <h2>Événement ID: @Model.EvenementId</h2>
+        <p><strong>Nombre de participants:</strong> @Model.NombreParticipants</p>
+    </div>
+
+    <div class="mt-4">
+        <a href="@Url.Action("Index")" class="btn btn-primary">Retour à la liste</a>
+    </div>
+</div>

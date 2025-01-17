@@ -1,0 +1,75 @@
+﻿@model ecf2.Models.Evenement
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container mt-4">
+    <h1 class="text-center">@ViewData["Title"]</h1>
+
+    <div class="mt-4">
+        <h4 class="text-primary">Evenement</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Nom)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Nom)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Lieu)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Lieu)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Date)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Date)
+            </dd>
+            <dt class="col-sm-2">
+                Nombre de participants
+            </dt>
+            <dd class="col-sm-10">
+                @ViewBag.ParticipantCount
+            </dd>
+        </dl>
+    </div>
+
+    <div class="mt-4">
+        <h5 class="text-info">Inscription</h5>
+        <form asp-action="Inscrire" method="post">
+            <input type="hidden" name="EvenementId" value="@Model.Id" />
+            <div class="form-group">
+                <label for="NomParticipant">Nom :</label>
+                <input type="text" name="NomParticipant" class="form-control" required />
+            </div>
+            <button type="submit" class="btn btn-success">S'inscrire</button>
+        </form>
+    </div>
+
+    <div class="mt-4">
+        <h4 class="text-primary">Liste des Participants</h4>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var participant in ViewBag.Participants)
+                {
+                    <tr>
+                        <td>@participant.Nom</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="mt-4">
+        <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model?.Id">Modifier</a> |
+        <a class="btn btn-secondary" asp-action="Index">Retour à la liste</a>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+﻿@model IEnumerable<ecf2.Models.EvenementStat>
+
+@{
+    ViewData["Title"] = "Statistiques des événements";
+}
+
+<div class="container mt-4">
+    <h1 class="text-center">@ViewData["Title"]</h1>
+
+    <table class="table table-bordered table-striped mt-3">
+        <thead class="thead-dark">
+            <tr>
+                <th>Événement ID</th>
+                <th>Nombre de participants</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var stat in Model)
+            {
+                <tr style="cursor:pointer;" onclick="location.href='@Url.Action("Details", new { id = stat.EvenementId })'">
+                    <td>@stat.EvenementId</td>
+                    <td>@stat.NombreParticipants</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
